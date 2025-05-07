@@ -1,12 +1,19 @@
+
 import React from "react";
-import HeroSlider from "../Component/Hero";
+import HeroSection from "./HeroSection";
 import PromoSection from "../Component/PromoSection";
 import CareerCard from "../Component/CareerCard";
-import CourseCard from "../Component/CourseCard";
 import GoalsSection from "../Component/GoalsSection";
 import PricingPlans from "../Component/PricingPlans";
-import Testimonials from "./Testimonials";
 
+
+import SkillTabs from "../Component/SkillTabs";
+import CategoryButtons from "../Component/CategoryButtons";
+import CoursesCarousel from "../Component/CoursesCarousel";
+import LearnersSection from "../Component/LearnersSection";
+
+
+// Sample career data for Career Cards
 const careerData = [
   {
     title: "Full Stack Web Developer",
@@ -37,16 +44,44 @@ const careerData = [
   },
 ];
 
+// Sample courses data for Course Cards
 const courses = [
-  // Add your actual course data here
+  {
+    title: "Introduction to Web Development",
+    description: "Learn HTML, CSS, and JavaScript to build modern web applications.",
+    image: "https://via.placeholder.com/300",
+    price: "$49.99",
+  },
+  {
+    title: "Digital Marketing Fundamentals",
+    description: "Master digital marketing strategies with hands-on projects.",
+    image: "https://via.placeholder.com/300",
+    price: "$39.99",
+  },
+  {
+    title: "Data Science with Python",
+    description: "Explore data analysis, machine learning, and data visualization.",
+    image: "https://via.placeholder.com/300",
+    price: "$59.99",
+  },
 ];
 
 const Home = () => {
   return (
     <div>
-      <HeroSlider />
-      <PromoSection />
 
+
+    <HeroSection />
+    <PromoSection />
+    <section className="px-4 md:px-12 py-10 bg-white">
+    <div className="max-w-7xl mx-auto">
+      <SkillTabs />
+      <CategoryButtons />
+      <CoursesCarousel />
+      <LearnersSection/>
+    </div>
+  </section>
+      
       {/* Career Cards Section */}
       <section className="px-4 md:px-12 py-10 bg-white">
         <div className="max-w-7xl mx-auto">
@@ -68,18 +103,14 @@ const Home = () => {
       <GoalsSection />
 
       {/* Course Section */}
-      <section className="bg-gray-50 py-10">
-        <div className="flex flex-wrap gap-6 justify-center px-4">
-          {courses.map((course, i) => (
-            <CourseCard key={i} course={course} />
-          ))}
-        </div>
-      </section>
+      
 
       {/* Pricing Plans Section */}
       <PricingPlans />
-      <Testimonials/>
 
+      {/* Testimonials Section */}
+    
+    
     </div>
   );
 };

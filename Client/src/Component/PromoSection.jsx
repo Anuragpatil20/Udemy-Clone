@@ -3,7 +3,7 @@ import edu from "../Images/learning-concept-illustration.png";
 
 
 const PromoSection = () => (
-  <section className="relative w-full bg-white overflow-hidden mt-5">
+  <section className="relative w-full bg-white overflow-hidden ">
     <div className="absolute top-0 right-0 w-3/4 h-full bg-yellow-300 transform -skew-x-12 origin-top-left z-0"></div>
     <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between px-6 md:px-16 py-12 max-w-7xl mx-auto">
       <div className="bg-white shadow-lg p-6 md:p-10 rounded-lg max-w-lg">
