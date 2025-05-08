@@ -9,8 +9,9 @@ import PricingPlans from "../Component/PricingPlans";
 
 import SkillTabs from "../Component/SkillTabs";
 import CategoryButtons from "../Component/CategoryButtons";
-import CoursesCarousel from "../Component/CoursesCarousel";
+
 import LearnersSection from "../Component/LearnersSection";
+import Footer from "./Footer";
 
 
 // Sample career data for Career Cards
@@ -77,7 +78,7 @@ const Home = () => {
     <div className="max-w-7xl mx-auto">
       <SkillTabs />
       <CategoryButtons />
-      <CoursesCarousel />
+   
       <LearnersSection/>
     </div>
   </section>
@@ -109,7 +110,7 @@ const Home = () => {
       <PricingPlans />
 
       {/* Testimonials Section */}
-    
+     <Footer/>
     
     </div>
   );

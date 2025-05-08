@@ -2,7 +2,7 @@ import React from 'react';
 import Navbar from './Component/Navbar';
 import Home from './Component/Home';
 import CourseListing from './Component/CourseListing';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 
 function App() {
