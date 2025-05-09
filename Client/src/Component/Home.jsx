@@ -12,6 +12,7 @@ import CategoryButtons from "../Component/CategoryButtons";
 
 import LearnersSection from "../Component/LearnersSection";
 import Footer from "./Footer";
+import CardListPage from "./CardListPage";
 
 
 // Sample career data for Career Cards
@@ -111,6 +112,8 @@ const Home = () => {
 
       {/* Testimonials Section */}
      <Footer/>
+
+
     
     </div>
   );

@@ -11,11 +11,11 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
         {/* Left Section */}
         <div className="flex items-center space-x-4">
-          <img
+         <a href='/'> <img
             src="https://www.udemy.com/staticx/udemy/images/v7/logo-udemy.svg"
             alt="Udemy"
             className="h-6 md:h-7"
-          />
+          /></a>
           <div className="hidden md:block">
             <button className="text-gray-700 hover:text-black text-[12px] font-medium">
               Categories
@@ -33,10 +33,10 @@ const Navbar = () => {
         </div>
 
         {/* Right Section */}
-        <div className="hidden md:flex items-center space-x-1.5 text-sm">
-          <button className="hover:bg-purple-200 h-8 w-28 border-hidden text-[12px] rounded-2xl">Plane & Pricing</button>
-          <button className="hover:bg-purple-200 h-8 w-28 border-hidden text-[12px] rounded-2xl">Udemy Business</button>
-          <button className="hover:bg-purple-200 h-8 w-28 border-hidden text-[12px] rounded-2xl">Teach on Udemy</button>
+        <div className="hidden md:flex items-center  space-x-3 text-sm">
+          <a href='/card' className="hover:bg-purple-200 px-3 py-2 h-8 w-28 border-hidden text-[12px] rounded-2xl">Plane & Pricing</a>
+          <a className="hover:bg-purple-200 h-8 w-28 px-3 py-2 border-hidden text-[12px] rounded-2xl">Udemy Business</a>
+          <a className="hover:bg-purple-200 h-8 w-28 px-3 py-2 border-hidden text-[12px] rounded-2xl">Teach on Udemy</a>
 
           <button className="px-3 py-2 hover:bg-purple-200 rounded-full">
             <MdOutlineShoppingCart className="text-xl cursor-pointer" />
@@ -71,7 +71,7 @@ const Navbar = () => {
 
           <div className="space-y-2">
             <button className="block w-full text-left px-4 py-2  rounded-md hover:bg-purple-50">Categories</button>
-            <button className="block w-full text-left px-4 py-2  rounded-md hover:bg-purple-50">Plane & Pricing</button>
+            <a href='/Card' className="block w-full text-left px-4 py-2  rounded-md hover:bg-purple-50">Plane & Pricing</a>
             <button className="block w-full text-left px-4 py-2  rounded-md hover:bg-purple-50">Udemy Business</button>
             <button className="block w-full text-left px-4 py-2  rounded-md hover:bg-purple-50">Teach on Udemy</button>
           </div>
