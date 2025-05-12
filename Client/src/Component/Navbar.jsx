@@ -35,7 +35,7 @@ const Navbar = () => {
         {/* Right Section */}
         <div className="hidden md:flex items-center  space-x-3 text-sm">
           <a href='/card' className="hover:bg-purple-200 px-3 py-2 h-8 w-28 border-hidden text-[12px] rounded-2xl">Plane & Pricing</a>
-          <a className="hover:bg-purple-200 h-8 w-28 px-3 py-2 border-hidden text-[12px] rounded-2xl">Udemy Business</a>
+          <a href='/wishlist' className="hover:bg-purple-200 h-8 w-28 px-3 py-2 border-hidden text-[12px] rounded-2xl">Udemy Business</a>
           <a className="hover:bg-purple-200 h-8 w-28 px-3 py-2 border-hidden text-[12px] rounded-2xl">Teach on Udemy</a>
 
           <button className="px-3 py-2 hover:bg-purple-200 rounded-full">

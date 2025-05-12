@@ -1,28 +1,35 @@
-import React from 'react';
+import React from "react";
+import { FaHeart } from "react-icons/fa";
+import { useWishlist } from "../Component/WishlistContext"; // path may change based on structure
 
-const CourseCard = ({ course }) => {
+const CourseCard = ({ id, thumbnail, title, instructor, price, rating }) => {
+  const { toggleWishlist, isWishlisted } = useWishlist();
+  const wishlisted = isWishlisted(id);
+
+  const handleWishlistClick = () => {
+    const course = { id, thumbnail, title, instructor, price, rating };
+    toggleWishlist(course);
+  };
+
   return (
-    <div className="w-64 bg-white rounded-lg overflow-hidden shadow-sm border">
-      <img src={course.image} alt={course.title} className="w-full h-36 object-cover" />
-      <div className="p-4">
-        <h3 className="font-semibold text-sm line-clamp-2">{course.title}</h3>
-        <p className="text-sm text-gray-600">{course.instructor}</p>
-        <div className="flex items-center gap-1 mt-1 text-yellow-500 text-sm">
-          <span>{course.rating}</span>
-          <span className="text-gray-500">({course.reviews.toLocaleString()})</span>
-        </div>
-        <div className="mt-2 text-sm font-semibold">
-          ₹{course.discountPrice}{' '}
-          <span className="line-through text-gray-400 text-xs">₹{course.originalPrice}</span>
-        </div>
-        <div className="flex gap-2 mt-2 text-xs">
-          {course.tags.includes('Premium') && (
-            <span className="bg-purple-100 text-purple-800 px-2 py-1 rounded">Premium</span>
-          )}
-          {course.tags.includes('Bestseller') && (
-            <span className="bg-green-100 text-green-800 px-2 py-1 rounded">Bestseller</span>
-          )}
-        </div>
+    <div className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition relative">
+      <button
+        onClick={handleWishlistClick}
+        className="absolute top-3 right-3 text-xl"
+      >
+        <FaHeart className={wishlisted ? "text-red-500" : "text-gray-300"} />
+      </button>
+
+      <img
+        src={thumbnail}
+        alt={title}
+        className="rounded-md h-40 w-full object-cover"
+      />
+      <h3 className="text-lg font-semibold mt-3">{title}</h3>
+      <p className="text-sm text-gray-500">{instructor}</p>
+      <div className="flex items-center justify-between mt-2">
+        <span className="text-primary font-bold">${price}</span>
+        <span className="text-yellow-500">⭐ {rating}</span>
       </div>
     </div>
   );
