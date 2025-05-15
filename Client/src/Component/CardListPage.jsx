@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CourseCard from "../Component/Card";
 import Footer from "./Footer";
 
-// 1. Add `level` to each course
+// Dummy courses
 const dummyCourses = [
   {
     id: 1,
@@ -90,24 +90,30 @@ const categories = ["All", "Development", "Design", "Marketing"];
 const levels = ["All", "Beginner", "Intermediate", "Advanced"];
 
 const CardListPage = () => {
+  const [searchText, setSearchText] = useState("");
   const [category, setCategory] = useState("All");
   const [level, setLevel] = useState("All");
   const [sortOption, setSortOption] = useState("default");
 
   const handleClearFilters = () => {
+    setSearchText("");
     setCategory("All");
     setLevel("All");
     setSortOption("default");
   };
 
-  // 2. Filter by category AND level
   const filteredCourses = dummyCourses.filter((course) => {
+    const matchesSearch =
+      course.title.toLowerCase().includes(searchText.toLowerCase()) ||
+      course.instructor.toLowerCase().includes(searchText.toLowerCase()) ||
+      course.category.toLowerCase().includes(searchText.toLowerCase());
+
     const categoryMatch = category === "All" || course.category === category;
     const levelMatch = level === "All" || course.level === level;
-    return categoryMatch && levelMatch;
+
+    return matchesSearch && categoryMatch && levelMatch;
   });
 
-  // 3. Sort
   const sortedCourses = [...filteredCourses].sort((a, b) => {
     switch (sortOption) {
       case "priceLow":
@@ -122,30 +128,41 @@ const CardListPage = () => {
   });
 
   return (
-    <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4">Available Courses</h2>
+    <div className="p-6 bg-gray-50 min-h-screen">
+      <h2 className="text-3xl font-bold mb-6 text-center">Available Courses</h2>
+
+      {/* Search Input */}
+      <div className="flex justify-center mb-6">
+        <input
+          type="text"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          placeholder="Search courses by title, instructor or category..."
+          className="w-full max-w-xl px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        />
+      </div>
 
       {/* Filter & Sort Controls */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div className="flex flex-wrap gap-2">
-          {/* Category Buttons */}
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setCategory(cat)}
-              className={`px-4 py-2 rounded-full border ${
-                category === cat ? "bg-blue-600 text-white" : "bg-white text-gray-800"
+              className={`px-4 py-2 rounded-full border transition ${
+                category === cat
+                  ? "bg-blue-600 text-white border-blue-600"
+                  : "bg-white text-gray-800 border-gray-300 hover:bg-gray-100"
               }`}
             >
               {cat}
             </button>
           ))}
 
-          {/* Difficulty Dropdown */}
           <select
             value={level}
             onChange={(e) => setLevel(e.target.value)}
-            className="border px-3 py-2 rounded-lg"
+            className="border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             {levels.map((lvl) => (
               <option key={lvl} value={lvl}>
@@ -154,24 +171,25 @@ const CardListPage = () => {
             ))}
           </select>
 
-          {/* Clear Filters Button */}
           <button
             onClick={handleClearFilters}
-            className="px-4 py-2 rounded-full border bg-gray-200 hover:bg-gray-300"
+            className="px-4 py-2 rounded-full border bg-gray-200 hover:bg-gray-300 transition"
           >
             Clear Filters
           </button>
 
-          <a href="/wishlist" className="px-4 py-2 rounded-full border hover:bg-gray-500">
+          <a
+            href="/wishlist"
+            className="px-4 py-2 rounded-full border bg-white hover:bg-gray-100 transition"
+          >
             Wishlist
           </a>
         </div>
 
-        {/* Sort Dropdown */}
         <select
           value={sortOption}
           onChange={(e) => setSortOption(e.target.value)}
-          className="border px-3 py-2 rounded-lg"
+          className="border border-gray-300 px-4 py-2 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
           <option value="default">Sort By</option>
           <option value="priceLow">Price: Low to High</option>
@@ -180,15 +198,21 @@ const CardListPage = () => {
         </select>
       </div>
 
-      {/* Count */}
-      <p className="mb-4 text-gray-600">Showing {sortedCourses.length} courses</p>
+      {/* Result Count */}
+      <p className="mb-4 text-gray-600 text-center">
+        Showing {sortedCourses.length} course{sortedCourses.length !== 1 && "s"}
+      </p>
 
-      {/* Course Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {sortedCourses.map((course) => (
-          <CourseCard key={course.id} {...course} />
-        ))}
-      </div>
+      {/* Courses Grid or No Results */}
+      {sortedCourses.length === 0 ? (
+        <p className="text-center text-gray-500">No courses found for your search criteria.</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {sortedCourses.map((course) => (
+            <CourseCard key={course.id} {...course} />
+          ))}
+        </div>
+      )}
 
       <Footer />
     </div>
